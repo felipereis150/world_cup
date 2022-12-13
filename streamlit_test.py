@@ -2,15 +2,11 @@ import pandas as pd
 import streamlit as st
 import csv
 
-
-
 # Title of the app
 st.title('Saldo de Gols por Ano e País na Copa do Mundo')
 
 # Read the data
-df_goals = pd.read_csv('data/goalscorers.csv', parse_dates=['date'])
-df_results = pd.read_csv('data/results.csv', parse_dates=['date'])
-df_shootouts = pd.read_csv('data/shootouts.csv', parse_dates=['date'])
+df_results = pd.read_csv('https://github.com/felipereis150/world_cup/blob/main/data/results.csv?raw=true', parse_dates=['date'])
 conf_names = pd.read_csv('data\confederation_names.csv',encoding='ISO-8859-1', sep = ';', engine='python')
 
 
