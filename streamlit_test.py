@@ -7,7 +7,7 @@ st.title('Saldo de Gols por Ano e País na Copa do Mundo')
 
 # Read the data
 df_results = pd.read_csv('https://github.com/felipereis150/world_cup/blob/main/data/results.csv?raw=true', parse_dates=['date'])
-conf_names = pd.read_csv('data\confederation_names.csv',encoding='ISO-8859-1', sep = ';', engine='python')
+conf_names = pd.read_csv('https://github.com/felipereis150/world_cup/blob/main/data/confederation_names.csv?raw=true',encoding='ISO-8859-1', sep = ';', engine='python')
 
 
 # Filter the data to check all the tournaments and countries in the dataset
@@ -17,24 +17,19 @@ countries = df_results.country.unique()
 # Set the base URL for the API
 api_url = 'https://countryflagsapi.com/png'
 
-# Open the CSV file for writing
-with open('flags.csv', 'w') as csvfile:
-    # Create a CSV writer object
-    writer = csv.writer(csvfile)
 
-    # Write the header row
-    writer.writerow(['country', 'flag_URL'])
+# Set the base URL for the API
+api_url = 'https://countryflagsapi.com/png'
 
-    # Loop through the countries
-    for country in countries:
-        # Build the URL for the flag image
-        flag_url = f'{api_url}/{country}'
+flags = []
+# Loop through the countries
+for country in countries:
 
-        # Write the country name and flag URL to the CSV file
-        writer.writerow([country, flag_url])
+    # Build the URL for the flag image
+    flag_url = f'{country},{api_url}'
+    flags.append([country, flag_url])
 
-# Read the CSV file with the flags
-flags = pd.read_csv('data/flags.csv', encoding='ISO-8859-1', engine='python')
+flags = pd.DataFrame(flags, columns=['country', 'flag_URL'])
 
 
 # Filter the data to check all the countries in the dataset
@@ -64,9 +59,6 @@ to_flourish = total_score_by_team.drop(['country', 'score'], axis=1)
 
 # reshape data to flourish format having 1 row per team and 1 column per year keeping the cumulative score, the flag and the acronysm as columns
 to_flourish = to_flourish.pivot_table(index=['team', 'flag_URL', 'acronysm'], columns='year', values='cum_score', aggfunc='first').reset_index().fillna(0)
-
-# Export the data to a CSV file
-to_flourish.to_csv('data/to_flourish.csv', index=False)
 
 # plot data
 st.components.v1.iframe(src="https://public.flourish.studio/visualisation/12149711/", width=800, height=700)
