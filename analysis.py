@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-import csv
 
 # Title of the app
 st.title('Saldo de Gols por Ano e País na Copa do Mundo')
@@ -59,6 +58,3 @@ to_flourish = total_score_by_team.drop(['country', 'score'], axis=1)
 
 # reshape data to flourish format having 1 row per team and 1 column per year keeping the cumulative score, the flag and the acronysm as columns
 to_flourish = to_flourish.pivot_table(index=['team', 'flag_URL', 'acronysm'], columns='year', values='cum_score', aggfunc='first').reset_index().fillna(0)
-
-# plot data
-st.components.v1.iframe(src="https://public.flourish.studio/visualisation/12149711/", width=800, height=700)
