@@ -16,10 +16,6 @@ countries = df_results.country.unique()
 # Set the base URL for the API
 api_url = 'https://countryflagsapi.com/png'
 
-
-# Set the base URL for the API
-api_url = 'https://countryflagsapi.com/png'
-
 flags = []
 # Loop through the countries
 for country in countries:
