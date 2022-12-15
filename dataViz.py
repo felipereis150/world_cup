@@ -1,5 +1,5 @@
 import streamlit as st
-
+import pandas as pd
 st.markdown("""
 
 # Saldo de Gols por Ano e País na Copa do Mundo
@@ -13,3 +13,8 @@ Abaixo temos uma visualização interativa da soma cumulativa de gols por time e
 st.components.v1.iframe(src="https://public.flourish.studio/visualisation/12149711/", width=800, height=700)
 
 st.markdown(""" como podemos observar, somente em 1976 a Alemanha ultrapassa o Brasil em saldo de gols matém essa vantagem até os dias de hoje. """)
+
+df = pd.read_csv('cities.csv')
+df.rename(columns={'city_ascii': 'city', 'lng':'lon'}, inplace=True)
+
+st.map(df)
