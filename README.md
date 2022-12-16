@@ -5,7 +5,7 @@
 
   ![plot](https://library.sportingnews.com/styles/crop_style_16_9_desktop/s3/2022-11/world-cup-qatar-2022-logo.png?itok=9lOWz8XZ)
 
-Este é um projeto de análise do saldo de gols das seleções nas copas do mundo ao longo dos anos, utilizando python, pandas e streamlit para criar uma visualização interativa dos dados.
+Este é um projeto de análise das seleções nas copas do mundo ao longo dos anos, utilizando python, pandas e streamlit para criar uma visualização dos dados.
 
   
 
