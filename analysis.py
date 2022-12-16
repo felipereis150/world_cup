@@ -28,17 +28,17 @@ flags = pd.DataFrame(flags, columns=['country', 'flag_URL'])
 
 
 # Filter the data to check all the countries in the dataset
-worldCup = df_results[df_results['tournament'] == 'FIFA World Cup']
+world_cup = df_results[df_results['tournament'] == 'FIFA World Cup']
 
 # Add year column
-worldCup['year'] = worldCup['date'].dt.year
+world_cup['year'] = world_cup['date'].dt.year
 
 # Reshape data to have 1 row per match and 2 columns per team (home and away) keeping the year, the date, the tournament, the city, the country, the neutral field and the score
-worldCup = worldCup.melt(id_vars=['year', 'date', 'home_team', 'away_team', 'tournament', 'city', 'country', 'neutral'], value_vars=['home_score', 'away_score'], var_name='score_type', value_name='score')
-worldCup = worldCup.melt(id_vars=['year', 'date', 'tournament', 'city', 'country', 'neutral', 'score_type', 'score'], value_vars=['home_team', 'away_team'], var_name='team_type', value_name='team')
+world_cup = world_cup.melt(id_vars=['year', 'date', 'home_team', 'away_team', 'tournament', 'city', 'country', 'neutral'], value_vars=['home_score', 'away_score'], var_name='score_type', value_name='score')
+world_cup = world_cup.melt(id_vars=['year', 'date', 'tournament', 'city', 'country', 'neutral', 'score_type', 'score'], value_vars=['home_team', 'away_team'], var_name='team_type', value_name='team')
 
 # Filter the data to keep only the home team and the score
-total_score_by_team = worldCup.groupby(['year', 'team'])['score'].sum().reset_index().sort_values(by='year', ascending=True)
+total_score_by_team = world_cup.groupby(['year', 'team'])['score'].sum().reset_index().sort_values(by='year', ascending=True)
 
 # Calculate the cumulative score by team
 total_score_by_team['cum_score'] = total_score_by_team.groupby('team')['score'].cumsum()

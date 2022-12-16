@@ -9,12 +9,35 @@ Abaixo temos uma visualização interativa da soma cumulativa de gols por time e
 
 """
 )
+
+# add slider to year
+year = st.slider('Ano', 1930, 2022, 1930)
+
 # plot data
-st.components.v1.iframe(src="https://public.flourish.studio/visualisation/12149711/", width=800, height=700)
+goal_difference_in_world_cup = st.components.v1.iframe(src="https://public.flourish.studio/visualisation/12149711/", width=800, height=700)
 
 st.markdown(""" como podemos observar, somente em 1976 a Alemanha ultrapassa o Brasil em saldo de gols matém essa vantagem até os dias de hoje. """)
 
-df = pd.read_csv('cities.csv')
-df.rename(columns={'city_ascii': 'city', 'lng':'lon'}, inplace=True)
 
-st.map(df)
+''' 
+Não tenho certeza de como quero continuar. Não parece ser possível trazer os dataframes do arquivo EDA para esse arquivo. No entando, não vale a pena fazer a análise toda de novo aqui só pra ter ela no streamlit. 
+
+Uma abordagem possível seria transformar o arquivo EDA em um módulo e importar ele aqui. Mas isso não parece ser uma boa prática, já que perco o controle do que está sendo executado e os gráficos que fiz lá. Outro trade-off é que perco a chance de mostrar o código que fiz para fazer a análise passo a passo. Fazer a análise aqui mesmo suja muito o código da visualização do dashboard. 
+
+Uma outra possibilidade é fazer uma função que retorna os dataframes que eu quero e importar ela aqui. Mas isso não parece ser uma boa prática também, já que perco a chance de mostrar o código que fiz para fazer a análise passo a passo.
+
+Posso juntar os dois arquivos (analisys e EDA) em um só, mas isso não parece ser uma boa prática também, já que perco a chance de mostrar o código que fiz para fazer a análise passo a passo.
+
+quero plotar os seguintes gráficos no dashboard
+
+
+acho que seria tudo ao longo dos anos
+
+
+cidades que houveram jogos [mapa]
+quem fez mais gols [line]
+países que mais houveram gols [barra]
+cidades que houveram mais hols [tabela]
+
+
+'''
